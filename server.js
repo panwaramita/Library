@@ -7,7 +7,7 @@ const passport = require("./config/passport");
 const exphbs = require("express-handlebars");
 const config=require("./config/config");
 // Setting up port and requiring models for syncing
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 const db = require("./models");
 const path=require('path');
 // Creating express app and configuring middleware needed for authentication
