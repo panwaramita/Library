@@ -1,30 +1,60 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@panwaramita 
+EricNg314
+/
+Sequelize-Heroku_JAWSDB-Example
+0
+22
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Sequelize-Heroku_JAWSDB-Example/models/index.js /
+@EricNg314
+EricNg314 Uploading files.
+Latest commit d13c585 on Jun 17, 2018
+ History
+ 1 contributor
+36 lines (30 sloc)  970 Bytes
+  
 'use strict';
 
 var fs        = require('fs');
 var path      = require('path');
 var Sequelize = require('sequelize');
-var basename  = path.basename(module.filename);
+var basename  = path.basename(__filename);
 var env       = process.env.NODE_ENV || 'development';
-var config    = require(__dirname + '/../config/config.json')[env];
+var config    = require(__dirname + '/../config/config.js')[env];
 var db        = {};
+
 if (config.use_env_variable) {
-  
-  var sequelize = new Sequelize(process.env[config.use_env_variable],config);
+  var sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
 fs
   .readdirSync(__dirname)
-  .filter(function(file) {
+  .filter(file => {
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
-  .forEach(function(file) {
+  .forEach(file => {
     var model = sequelize['import'](path.join(__dirname, file));
     db[model.name] = model;
   });
 
-Object.keys(db).forEach(function(modelName) {
+Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
