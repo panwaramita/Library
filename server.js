@@ -2,12 +2,11 @@
 const express = require("express");
 const session = require("express-session");
 // Requiring passport as we've configured it
-require('dotenv').config();
 const passport = require("./config/passport");
 const exphbs = require("express-handlebars");
-const config=require("./config/config");
+const config=require("./config/config.json");
 // Setting up port and requiring models for syncing
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const db = require("./models");
 const path=require('path');
 // Creating express app and configuring middleware needed for authentication
