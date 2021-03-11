@@ -1,33 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@panwaramita 
-EricNg314
-/
-Sequelize-Heroku_JAWSDB-Example
-0
-22
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Sequelize-Heroku_JAWSDB-Example/models/index.js /
-@EricNg314
-EricNg314 Uploading files.
-Latest commit d13c585 on Jun 17, 2018
- History
- 1 contributor
-36 lines (30 sloc)  970 Bytes
-  
 'use strict';
 
 var fs        = require('fs');
