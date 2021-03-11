@@ -6,8 +6,10 @@ const passport = require("./config/passport");
 const exphbs = require("express-handlebars");
 //const config=require("./config/config");
 // Setting up port and requiring models for syncing
+require("dotenv").config();
 const PORT = process.env.PORT || 3000;
-const db = require("./models");
+let db ;
+//= require("./models");
 const path=require('path');
 // Creating express app and configuring middleware needed for authentication
 const app = express();
@@ -27,14 +29,23 @@ app.use(passport.session());
 // Requiring our routes
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
-
+if (process.env.JAWSDB_URL) {
+  console.log("There is a JAWS DB URL")
+  db = new Sequelize(process.env.JAWSDB_URL)
+}
+else {
+  db = require("./models").sequelize
+}
+db.sync().then(() => {
+app.listen(PORT, () => console.log('server started on port ' + PORT));
+})
 // Syncing our database and logging a message to the user upon success
-db.sequelize.sync().then(() => {
-  app.listen(PORT, () => {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
-  });
-});
+// db.sequelize.sync().then(() => {
+//   app.listen(PORT, () => {
+//     console.log(
+//       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+//       PORT,
+//       PORT
+//     );
+  // });
+//});
